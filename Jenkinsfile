@@ -1,10 +1,13 @@
-/* Requires the Docker Pipeline plugin */
 pipeline {
-    agent { docker { image 'maven:3.9.0-eclipse-temurin-11' } }
+    agent { node { label 'vm1' } }
+
     stages {
-        stage('build') {
+        stage('Test') {
             steps {
-                sh 'mvn --version'
+                /* `make check` returns non-zero on test failures,
+                * using `true` to allow the Pipeline to continue nonetheless
+                */
+                echo "hi"
             }
         }
     }
